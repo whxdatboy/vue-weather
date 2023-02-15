@@ -19,15 +19,10 @@
         </div>
       </div>
       <div class="weather-item-row">
-        <span class="weather-item-feels_like">
+        <div class="weather-item-text">
           Feels like
-          {{ weather.feels_like }}.&nbsp;
-        </span>
-
-        <span class="weather-item-weather"> {{ weather.main }}.&nbsp; </span>
-        <span class="weather-item-description">
-          {{ weather.description }}
-        </span>
+          {{ weather.feels_like }}.&nbsp;{{ weather.main }}.&nbsp;{{ weather.description }}
+        </div>
       </div>
       <div class="weather-item-row weather-wind">
         <div class="weather-wind-info">
@@ -52,7 +47,7 @@
 </template>
 
 <script async setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { windDirection } from '@/assets/js/consts.js'
 import {
   toUpper,
@@ -71,7 +66,6 @@ let response = await getWeather(props.city)
 
 if (response) {
   try {
-    console.log(response)
     weather.value = {
       city: response.name,
       country: response.sys.country,

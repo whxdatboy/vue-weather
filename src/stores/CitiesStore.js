@@ -26,8 +26,7 @@ export const useCitiesStore = defineStore('citiesStore', {
       const weather = await response.json()
       const cityName =
         weather.response.GeoObjectCollection.featureMember[0].GeoObject.name
-      this.cities.push(cityName)
-      localStorage.setItem('cities', JSON.stringify(this.cities))
+      this.addNewCity(cityName)
     },
     addNewCity(city) {
       this.cities.push(city)
