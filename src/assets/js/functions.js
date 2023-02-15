@@ -1,4 +1,4 @@
-import { apiWeather } from '@/assets/js/consts.js'
+import {apiWeather} from '@/assets/js/consts.js'
 
 export const getWeather = async city => {
   try {
@@ -21,26 +21,16 @@ export const temperatureRounding = number => {
 export const getTheme = () => {
   let theme = ''
   const time = new Date().getHours()
-  const dayZone = [
-    {
-      name: 'night',
-      start: 21,
-      end: 6
-    },
-    {
-      name: 'day',
-      start: 6,
-      end: 21
-    }
-  ]
+  const dayZone = {
+    start: 6,
+    end: 21
+  }
 
-  dayZone.forEach(el => {
-    if (el.end > time && time > el.start) {
-      theme = el.name
-    }
-  })
+  if (dayZone.end > time && time > dayZone.start) {
+    theme = 'day'
+  } else {
+    theme = 'night'
+  }
 
   return theme
 }
-
-console.log(getTheme())
