@@ -8,7 +8,3 @@ export const appPath = {
   icons: `src/icons/`,
   fonts: `src/fonts/`
 }
-
-export const isDevB = (mode) => {
-  return mode === 'devb'
-}

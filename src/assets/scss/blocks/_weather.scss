@@ -1,0 +1,24 @@
+.weather {
+  padding: 2rem;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  max-width: 400px;
+  font-size: 14px;
+
+  &.theme-night {
+    --bg-color: var(--night-bg-color);
+    --border-color: var(--color-white);
+    --text-color: var(--color-white);
+  }
+
+  &.theme-day {
+    --bg-color: var(--day-bg-color);
+    --border-color: var(--color-black);
+    --text-color: var(--color-black);
+  }
+
+  &-small-text {
+    font-size: 14px;
+  }
+}

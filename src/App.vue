@@ -1,17 +1,5 @@
 <template>
   <div class="container mx-auto px-4">
-    <div class="block-text">anything</div>
-
-    <div class="coords text-green-600">
-      <!--      {{ citiesStore.startCoords }}-->
-
-      {{ citiesStore.cities }}
-    </div>
-
-    <div class="coords text-green-600">
-      <!--      {{ info }}-->
-    </div>
-
     <CityWeather :cities-array="citiesStore.cities" />
   </div>
 </template>

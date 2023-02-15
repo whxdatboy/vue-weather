@@ -1,38 +1,51 @@
 <template>
   <div class="weather-item">
-    <div class="text-red-400">{{ weather }}</div>
-    <div class="weather-item-row flex">
-      <div class="weather-item-name">
-        {{ weather.city }}
-        <span class="weather-item-country">{{ weather.country }}</span>
+    <!--    <div class="text-red-400">{{ weather }}</div>-->
+    <div class="weather-item-content">
+      <div class="weather-item-row weather-item-head">
+        <div class="weather-item-name">
+          {{ weather.city }}
+          <span class="weather-item-country">{{ weather.country }}</span>
+        </div>
       </div>
-    </div>
-    <div class="weather-item-row flex">
-      <div class="weather-item-temperature">
-        {{ weather.temp }}
+      <div class="weather-item-row">
+        <div class="weather-item-temperature">
+          {{ weather.temp }}
+        </div>
+        <div class="weather-item-icon">
+          <img
+            :src="imageUrl"
+            alt="Icon of weather" />
+        </div>
       </div>
-      <div class="weather-item-icon">
-        <img
-          :src="imageUrl"
-          alt="Icon of weather" />
-      </div>
-    </div>
-    <div class="weather-item-row flex">
-      <span class="weather-item-feels_like">
-        Feels like
-        {{ weather.feels_like }}.&nbsp;
-      </span>
+      <div class="weather-item-row">
+        <span class="weather-item-feels_like">
+          Feels like
+          {{ weather.feels_like }}.&nbsp;
+        </span>
 
-      <span class="weather-item-weather">
-         {{ weather.main }}.&nbsp;
-      </span>
-      <span class="weather-item-description">
-         {{ weather.description }}
-      </span>
-    </div>
-    <div class="weather-item-row weather-wind flex">
-      <div class="weather-wind-info">
-        {{weather.speed}} m/s. {{ weather.direction }}
+        <span class="weather-item-weather"> {{ weather.main }}.&nbsp; </span>
+        <span class="weather-item-description">
+          {{ weather.description }}
+        </span>
+      </div>
+      <div class="weather-item-row weather-wind">
+        <div class="weather-wind-info">
+          {{ weather.speed }} m/s. {{ weather.direction }}
+        </div>
+
+        <div class="weather-item-pressure weather-item-row">
+          <div class="icon" />
+          <div class="weather-item-pressure__value">
+            {{ weather.pressure }} hPa
+          </div>
+        </div>
+      </div>
+      <div class="weather-item-list">
+        <div class="weather-item-row">Humidity {{ weather.humidity }}%</div>
+        <div class="weather-item-row">
+          Visibility {{ (weather.visibility / 1000).toFixed(1) }} km
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +53,12 @@
 
 <script async setup>
 import { ref, computed } from 'vue'
-import { getWeather, windDirection, toUpper, temperatureRounding } from '@/assets/js/consts.js'
+import { windDirection } from '@/assets/js/consts.js'
+import {
+  toUpper,
+  getWeather,
+  temperatureRounding
+} from '@/assets/js/functions.js'
 
 const props = defineProps({
   city: {
@@ -51,18 +69,22 @@ const props = defineProps({
 const weather = await ref({})
 let response = await getWeather(props.city)
 
-if(response) {
+if (response) {
   try {
+    console.log(response)
     weather.value = {
       city: response.name,
       country: response.sys.country,
       temp: temperatureRounding(response.main.temp),
       feels_like: temperatureRounding(response.main.feels_like),
+      pressure: response.main.pressure,
       main: toUpper(response.weather[0].main),
       description: toUpper(response.weather[0].description),
       speed: response.wind.speed,
       direction: windDirection(response.wind.deg),
-      icon: response.weather[0].icon
+      icon: response.weather[0].icon,
+      humidity: response.main.humidity,
+      visibility: response.visibility
     }
   } catch (error) {
     throw new Error(error)
@@ -71,7 +93,6 @@ if(response) {
   response = null
 }
 
-const imageUrl = await new URL(`@/assets/images/`, import.meta.url)
+const imageUrl = new URL(`@/assets/images/`, import.meta.url)
 imageUrl.href += `/${weather.value.icon}.svg`
-
 </script>

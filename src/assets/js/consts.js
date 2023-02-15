@@ -11,32 +11,8 @@ export const apiWeather = city => {
 export const apiGeocode = coords => {
   return `${apiGeocoderUrl}?apikey=${apiKeyGeocoder}&geocode=${coords.longitude},${coords.latitude}&format=json&kind=locality&results=1`
 }
-
-export const getWeather = async city => {
-  try {
-    const response = await fetch(apiWeather(city))
-    return await response.json()
-  } catch (error) {
-    console.log(error)
-    return false
-  }
-}
-
-
-export const toUpper = ((string = '') => {
-  const firstLetter = string.slice(0, 1).toUpperCase()
-  const otherString = string.slice(1).toLowerCase()
-  return firstLetter + otherString
-})
-
-export const temperatureRounding = (number) => {
-  return number > 0
-    ? Math.ceil(number)
-    : Math.floor(number)
-}
-
 export const windDirection = deg => {
-  /*const romaPidor = {
+  /*const associatedArray = {
     N:
       [
         {
@@ -71,6 +47,3 @@ export const windDirection = deg => {
   else direction = 'NNW'
   return direction
 }
-
-export const token = "71d68e18b281f119f500350478745ca082c9274f";
-var query = { lat: 56.9993212, lon: 40.9609744 };
