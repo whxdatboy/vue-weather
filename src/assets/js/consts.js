@@ -99,11 +99,8 @@ export const windDirection = deg => {
       end: 360
     }
   ]
-  let direction = ''
 
-  directionArray.find(el => {
-    el.start < deg && deg < el.end ? direction = el.name : false
-  })
+  const direction = directionArray.find(el => el.start < deg && deg < el.end )
 
-  return direction
+  return direction.name
 }
