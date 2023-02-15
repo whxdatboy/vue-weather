@@ -18,19 +18,3 @@ onBeforeMount(() => {
   }
 })
 </script>
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.block {
-  margin-top: 15px;
-  width: 150px;
-  height: 100px;
-  border: 1px solid lightgreen;
-}
-
-.block.ready {
-  border-color: forestgreen;
-}
-</style>
