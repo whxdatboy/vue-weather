@@ -12,38 +12,98 @@ export const apiGeocode = coords => {
   return `${apiGeocoderUrl}?apikey=${apiKeyGeocoder}&geocode=${coords.longitude},${coords.latitude}&format=json&kind=locality&results=1`
 }
 export const windDirection = deg => {
-  /*const associatedArray = {
-    N:
-      [
-        {
-          min:0,
-          max:11.25
-        },
-        {
-          min:348.75,
-          max:360
-        }
-      ],
-    NNE:[
-    
-    ]
-    }*/
+  const directionArray = [
+    {
+      name: 'N',
+      start: 0,
+      end: 11.25
+    },
+    {
+      name: 'NNE',
+      start: 11.25,
+      end: 33.75
+    },
+    {
+      name: 'NE',
+      start: 33.75,
+      end: 56.25
+    },
+    {
+      name: 'ENE',
+      start: 56.25,
+      end: 78.75
+    },
+    {
+      name: 'E',
+      start: 78.75,
+      end: 101.25
+    },
+    {
+      name: 'ESE',
+      start: 101.25,
+      end: 123.75
+    },
+    {
+      name: 'SE',
+      start: 123.75,
+      end: 146.25
+    },
+    {
+      name: 'SSE',
+      start: 146.25,
+      end: 168.75
+    },
+    {
+      name: 'S',
+      start: 168.25,
+      end: 191.25
+    },
+    {
+      name: 'SSW',
+      start: 191.25,
+      end: 213.75
+    },
+    {
+      name: 'SW',
+      start: 213.75,
+      end: 236.25
+    },
+    {
+      name: 'WSW',
+      start: 236.25,
+      end: 258.75
+    },
+    {
+      name: 'W',
+      start: 258.75,
+      end: 281.25
+    },
+    {
+      name: 'WNW',
+      start: 281.25,
+      end: 303.75
+    },
+    {
+      name: 'NW',
+      start: 303.75,
+      end: 326.25
+    },
+    {
+      name: 'NNW',
+      start: 326.25,
+      end: 348.75
+    },
+    {
+      name: 'N',
+      start: 348.75,
+      end: 360
+    }
+  ]
   let direction = ''
-  if (deg > 348.75 || 11.25 > deg > 0) direction = 'N'
-  else if (33.75 > deg > 11.25) direction = 'NNE'
-  else if (56.25 > deg > 33.75) direction = 'NE'
-  else if (78.75 > deg > 56.25) direction = 'ENE'
-  else if (101.25 > deg > 78.75) direction = 'E'
-  else if (123.75 > deg > 101.25) direction = 'ESE'
-  else if (146.25 > deg > 123.75) direction = 'SE'
-  else if (168.75 > deg > 146.25) direction = 'SSE'
-  else if (191.25 > deg > 168.25) direction = 'S'
-  else if (213.75 > deg > 191.25) direction = 'SSW'
-  else if (236.25 > deg > 213.75) direction = 'SW'
-  else if (258.75 > deg > 236.25) direction = 'WSW'
-  else if (281.25 > deg > 258.75) direction = 'W'
-  else if (303.75 > deg > 281.25) direction = 'WNW'
-  else if (326.25 > deg > 303.75) direction = 'NW'
-  else direction = 'NNW'
+
+  directionArray.find(el => {
+    el.start < deg && deg < el.end ? direction = el.name : false
+  })
+
   return direction
 }
