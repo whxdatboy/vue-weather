@@ -4,21 +4,22 @@
 {
   "root": true,
   "extends": [
-    "eslint:recommended",
     "plugin:vue/vue3-recommended",
     "prettier"
   ],
   "plugins": [
-    "prettier"
+    "vue", "prettier"
   ],
   "parser": "vue-eslint-parser",
   "env": {
     "browser": true,
     "es6": true,
+    "es2021": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "rules": {
     "no-unused-vars": "error",
@@ -49,6 +50,7 @@
       },
       "svg": "always",
       "math": "always"
-    }]
+    }],
+    "prettier/prettier": "error"
   }
 }
