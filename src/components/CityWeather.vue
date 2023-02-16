@@ -12,7 +12,9 @@
       class="weather-wrap">
       <Suspense>
         <template #fallback>
-          <div class="weather-loader">Loading...</div>
+          <div class="weather-loader">
+            <div class="loader-item" />
+          </div>
         </template>
         <WeatherItem
           v-for="(city, id) in props.citiesArray"

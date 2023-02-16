@@ -9,7 +9,7 @@ export const apiWeather = city => {
 }
 
 export const apiGeocode = coords => {
-  return `${apiGeocoderUrl}?apikey=${apiKeyGeocoder}&geocode=${coords.longitude},${coords.latitude}&format=json&kind=locality&results=1`
+  return `${apiGeocoderUrl}?apikey=${apiKeyGeocoder}&geocode=${coords.longitude},${coords.latitude}&lang=en&format=json&kind=locality&results=1`
 }
 export const windDirection = deg => {
   const directionArray = [
@@ -100,7 +100,7 @@ export const windDirection = deg => {
     }
   ]
 
-  const direction = directionArray.find(el => el.start < deg && deg < el.end )
+  const direction = directionArray.find(el => el.start < deg && deg < el.end)
 
   return direction.name
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="weather-settings">
     <div class="weather-cities-list">
+      <div class="weather-cities-list__title">List of cities</div>
       <div
         v-for="(city, i) in citiesStore.cities"
         :key="i"
@@ -11,7 +12,7 @@
         <div
           class="weather-cities-item-delete"
           @click="removeCity(i)">
-          удалить
+          <SvgIcon :name="'delete'" />
         </div>
       </div>
     </div>
@@ -22,13 +23,14 @@
           <input
             v-model="name"
             type="text"
+            placeholder="Search"
             class="form-input weather-settings-add_input" />
         </label>
         <button
           type="button"
-          class="weather-settings-add_delete"
+          class="weather-settings-add_button"
           @click="addNewCity">
-          Добавить
+          <SvgIcon :name="'search'" />
         </button>
       </div>
     </div>

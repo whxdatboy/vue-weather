@@ -1,0 +1,29 @@
+.weather-cities {
+  &-list {
+    padding-top: calc(var(--gap) * 1.5);
+    max-width: 200px;
+
+    &__title {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+  }
+  &-item {
+    align-items: center;
+    color: var(--text-color);
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    &-name {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    &-delete {
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+}
