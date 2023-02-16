@@ -49,10 +49,6 @@ const props = defineProps({
     required: true
   }
 })
-
-const addNewCity = value => {
-  console.log(value)
-}
 </script>
 
 <style>
