@@ -1,40 +1,49 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import { apiGeocode, apiWeather } from '@/assets/js/consts.js'
+import { ref } from 'vue'
+import { apiGeocode } from '@/assets/js/consts.js'
 
-export const useCitiesStore = defineStore('citiesStore', {
-  state: () => ({
-    cities: JSON.parse(localStorage.getItem('cities')) || [],
-    initCoords: JSON.parse(localStorage.getItem('coords')) || {
+export const useCitiesStore = defineStore('citiesStore', () => {
+  const initCoords = ref(
+    JSON.parse(localStorage.getItem('coords')) || {
       longitude: 0,
       latitude: 0
     }
-  }),
-  getters: {},
-  actions: {
-    setStartedCoords() {
-      if (this.initCoords.longitude === 0 && this.initCoords.latitude === 0) {
-        window.navigator.geolocation.getCurrentPosition(pos => {
-          this.initCoords.longitude = pos.coords.longitude
-          this.initCoords.latitude = pos.coords.latitude
-          localStorage.setItem('coords', JSON.stringify(this.initCoords))
-        })
-      }
-    },
-    async setStartedCity() {
-      const response = await fetch(apiGeocode(this.initCoords))
-      const weather = await response.json()
-      const cityName =
-        weather.response.GeoObjectCollection.featureMember[0].GeoObject.name
-      this.addNewCity(cityName)
-    },
-    addNewCity(city) {
-      this.cities.push(city)
-      localStorage.setItem('cities', JSON.stringify(this.cities))
-    },
-    deleteCity(index) {
-      this.cities.splice(index, 1)
-      localStorage.setItem('cities', JSON.stringify(this.cities))
+  )
+
+  const cities = ref(JSON.parse(localStorage.getItem('cities')) || [])
+
+  function setStartedCoords() {
+    if (initCoords.value.longitude === 0 && initCoords.value.latitude === 0) {
+      window.navigator.geolocation.getCurrentPosition(async pos => {
+        initCoords.value.longitude = pos.coords.longitude
+        initCoords.value.latitude = pos.coords.latitude
+        localStorage.setItem('coords', JSON.stringify(initCoords.value))
+        initCoords.value = JSON.parse(localStorage.getItem('coords'))
+
+        const response = await fetch(apiGeocode(initCoords.value))
+        const weather = await response.json()
+        const cityName = await weather.response.GeoObjectCollection
+          .featureMember[0].GeoObject.name
+        await this.addNewCity(cityName)
+      })
     }
+  }
+
+  function addNewCity(city) {
+    this.cities.push(city)
+    localStorage.setItem('cities', JSON.stringify(this.cities))
+  }
+
+  function deleteCity(index) {
+    this.cities.splice(index, 1)
+    localStorage.setItem('cities', JSON.stringify(this.cities))
+  }
+
+  return {
+    initCoords,
+    cities,
+    setStartedCoords,
+    addNewCity,
+    deleteCity
   }
 })
