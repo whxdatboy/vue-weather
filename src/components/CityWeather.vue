@@ -20,9 +20,7 @@
           :city="city" />
       </Suspense>
     </div>
-    <WeatherSettings
-      v-if="settingsOpen"
-      @addNewCity="addNewCity" />
+    <WeatherSettings v-if="settingsOpen" />
   </div>
 </template>
 
