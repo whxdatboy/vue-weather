@@ -21,12 +21,19 @@
       <div class="weather-item-row">
         <div class="weather-item-text">
           Feels like
-          {{ weather.feels_like }}.&nbsp;{{ weather.main }}.&nbsp;{{ weather.description }}
+          {{ weather.feels_like }}.&nbsp;{{ weather.main }}.&nbsp;{{
+            weather.description
+          }}
         </div>
       </div>
       <div class="weather-item-row weather-wind">
-        <div class="weather-wind-info">
-          {{ weather.speed }} m/s. {{ weather.direction }}
+        <div class="weather-wind-info flex">
+          {{ weather.speed }} m/s.
+          <span class="weather-wind-icon">
+            <SvgIcon
+              name="compas"
+              :style="{ transform: 'rotate(' + weather.deg + 'deg)' }" /> </span
+          >{{ weather.direction }}
         </div>
 
         <div class="weather-item-pressure weather-item-row">
@@ -75,6 +82,7 @@ if (response) {
       main: toUpper(response.weather[0].main),
       description: toUpper(response.weather[0].description),
       speed: response.wind.speed,
+      deg: response.wind.deg,
       direction: windDirection(response.wind.deg),
       icon: response.weather[0].icon,
       humidity: response.main.humidity,

@@ -21,4 +21,16 @@
   &-small-text {
     font-size: 14px;
   }
+
+  &-wind {
+    &-info {
+      align-items: center;
+      margin-right: 15px;
+    }
+    &-icon {
+      display: flex;
+      margin: 0 5px 0 8px;
+      color: var(--text-color);
+    }
+  }
 }
