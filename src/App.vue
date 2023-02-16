@@ -11,10 +11,9 @@ import CityWeather from 'components/CityWeather.vue'
 
 const citiesStore = useCitiesStore()
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   if (citiesStore.cities.length === 0) {
     citiesStore.setStartedCoords()
-    citiesStore.setStartedCity()
   }
 })
 </script>

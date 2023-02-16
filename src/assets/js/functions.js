@@ -1,4 +1,4 @@
-import {apiWeather} from '@/assets/js/consts.js'
+import { apiWeather } from '@/assets/js/consts.js'
 
 export const getWeather = async city => {
   try {
