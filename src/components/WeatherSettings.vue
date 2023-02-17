@@ -49,7 +49,7 @@ const addNewCity = () => {
   name.value = ''
 }
 
-const removeCity = i => {
-  citiesStore.deleteCity(i)
+const removeCity = id => {
+  citiesStore.deleteCity(id)
 }
 </script>
