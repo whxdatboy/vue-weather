@@ -18,6 +18,9 @@ export default defineConfig({
   },
   envDir: '/',
   base: './',
+  css: {
+    devSourcemap: true
+  },
   server: {
     port: 3000,
     strictPort: true
