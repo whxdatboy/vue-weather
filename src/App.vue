@@ -1,9 +1,6 @@
 <template>
   <div class="container mx-auto px-4">
     <CityWeather :cities-array="citiesStore.cities" />
-    <div class="container1">
-      <div class="block" />
-    </div>
   </div>
 </template>
 
