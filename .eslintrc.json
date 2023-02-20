@@ -5,10 +5,12 @@
   "root": true,
   "extends": [
     "plugin:vue/vue3-recommended",
+    "@vue/typescript/recommended",
     "prettier"
   ],
   "plugins": [
-    "vue", "prettier"
+    "vue",
+    "prettier"
   ],
   "parser": "vue-eslint-parser",
   "env": {
@@ -23,34 +25,50 @@
   },
   "rules": {
     "no-unused-vars": "error",
-    "vue/component-tags-order": ["error", {
-      "order": [ "template", "script", "style" ]
-    }],
-    "vue/attributes-order": ["error", {
-      "order": [
-        "DEFINITION",
-        "LIST_RENDERING",
-        "CONDITIONALS",
-        "RENDER_MODIFIERS",
-        "GLOBAL",
-        ["UNIQUE", "SLOT"],
-        "TWO_WAY_BINDING",
-        "OTHER_DIRECTIVES",
-        "OTHER_ATTR",
-        "EVENTS",
-        "CONTENT"
-      ],
-      "alphabetical": false
-    }],
-    "vue/html-self-closing": ["error", {
-      "html": {
-        "void": "never",
-        "normal": "always",
-        "component": "always"
-      },
-      "svg": "always",
-      "math": "always"
-    }],
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": [
+          "template",
+          "script",
+          "style"
+        ]
+      }
+    ],
+    "vue/attributes-order": [
+      "error",
+      {
+        "order": [
+          "DEFINITION",
+          "LIST_RENDERING",
+          "CONDITIONALS",
+          "RENDER_MODIFIERS",
+          "GLOBAL",
+          [
+            "UNIQUE",
+            "SLOT"
+          ],
+          "TWO_WAY_BINDING",
+          "OTHER_DIRECTIVES",
+          "OTHER_ATTR",
+          "EVENTS",
+          "CONTENT"
+        ],
+        "alphabetical": false
+      }
+    ],
+    "vue/html-self-closing": [
+      "error",
+      {
+        "html": {
+          "void": "never",
+          "normal": "always",
+          "component": "always"
+        },
+        "svg": "always",
+        "math": "always"
+      }
+    ],
     "prettier/prettier": "error"
   }
 }

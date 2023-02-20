@@ -17,7 +17,7 @@
   border-right: 2px solid var(--text-color);
   border-bottom: 2px solid var(--text-color);
   border-left: 2px solid transparent;
-  animation: rotate 1s linear;
+  animation: rotate 1s linear infinite;
 }
 
 @keyframes rotate {

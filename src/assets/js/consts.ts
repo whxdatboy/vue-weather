@@ -1,18 +1,21 @@
+import { Coords, Direction } from '@/types/consts'
+
 export const weatherUrl = 'https://api.openweathermap.org/data/2.5/weather'
 export const apiKey = '369796b51173a616a767443ffabf65b1'
 const apiKeyGeocoder = 'f8d1318f-e2d1-48cd-b79a-2f0bfe1543f6'
 const apiGeocoderUrl = 'https://geocode-maps.yandex.ru/1.x'
-
-export const coords = { ...localStorage.getItem('cities') }
-export const apiWeather = city => {
+export const apiWeather = (city: string) => {
   return `${weatherUrl}?q=${city}&units=metric&appid=${apiKey}`
 }
 
-export const apiGeocode = coords => {
+export const apiGeocode = (coords: Coords) => {
   return `${apiGeocoderUrl}?apikey=${apiKeyGeocoder}&geocode=${coords.longitude},${coords.latitude}&lang=en&format=json&kind=locality&results=1`
 }
-export const windDirection = deg => {
-  const directionArray = [
+
+// type windDirectionFunction = (deg: number) => string
+
+export const windDirection = (deg: number) => {
+  const directionArray: Direction[] = [
     {
       name: 'N',
       start: 0,
@@ -100,7 +103,11 @@ export const windDirection = deg => {
     }
   ]
 
-  const direction = directionArray.find(el => el.start < deg && deg < el.end)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const direction: Direction = directionArray.find(
+    el => el.start <= deg && deg <= el.end
+  )
 
   return direction.name
 }

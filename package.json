@@ -1,11 +1,11 @@
 {
-  "name": "vue-bundler",
+  "name": "vue-weather",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "devb": "vite build --mode devb -w"
@@ -18,9 +18,11 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@rushstack/eslint-patch": "^1.1.4",
+    "@types/node": "^18.13.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.2",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.6.0",
@@ -31,6 +33,7 @@
     "prettier": "^2.7.1",
     "sass": "^1.57.1",
     "tailwindcss": "^3.2.4",
+    "types": "^0.1.1",
     "unplugin-svg-component": "^0.4.1",
     "vite": "^4.0.0",
     "vite-plugin-svg-sprite": "^0.3.1"

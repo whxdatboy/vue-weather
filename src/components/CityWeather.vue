@@ -26,24 +26,32 @@
   </div>
 </template>
 
-<script setup>
-import { ref, defineAsyncComponent, computed } from 'vue'
-import { getTheme } from '@/assets/js/functions.js'
+<script setup lang="ts">
+import {
+  ref,
+  defineAsyncComponent,
+  computed,
+  Ref,
+  ComputedRef,
+  VueElement
+} from 'vue'
+import { getTheme } from '@/assets/js/functions'
 import WeatherSettings from 'components/WeatherSettings.vue'
 
-const theme = computed(() => {
+const theme: ComputedRef<string> = computed(() => {
   return `theme-${getTheme()}`
 })
 
 const WeatherItem = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
-    resolve(import('components/WeatherItem.vue'))
+    const weatherComponent = import('components/WeatherItem.vue')
+    resolve(weatherComponent)
 
-    reject(error => console.log(error))
+    reject((error: string) => console.log(error))
   })
-})
+}) as VueElement
 
-const settingsOpen = ref(false)
+const settingsOpen: Ref<boolean> = ref(false)
 
 const props = defineProps({
   citiesArray: {

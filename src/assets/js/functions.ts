@@ -1,6 +1,6 @@
-import { apiWeather } from '@/assets/js/consts.js'
+import { apiWeather } from './consts'
 
-export const getWeather = async city => {
+export const getWeather = async (city: string) => {
   try {
     const response = await fetch(apiWeather(city))
     return await response.json()
@@ -14,12 +14,12 @@ export const toUpper = (string = '') => {
   const otherString = string.slice(1).toLowerCase()
   return firstLetter + otherString
 }
-export const temperatureRounding = number => {
+export const temperatureRounding = (number: number) => {
   return number > 0 ? Math.ceil(number) : Math.floor(number)
 }
 
 export const getTheme = () => {
-  let theme = ''
+  let theme
   const time = new Date().getHours()
   const dayZone = {
     start: 6,
