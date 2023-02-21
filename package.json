@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "buildnetlify": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "devtype": "vite tsc"
@@ -34,6 +35,6 @@
     "types": "^0.1.1",
     "unplugin-svg-component": "^0.4.1",
     "vite": "^4.0.0",
-    "vite-plugin-checker": "^0.5.6",
+    "vite-plugin-checker": "^0.5.6"
   }
 }
