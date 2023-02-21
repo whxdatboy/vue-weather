@@ -8,7 +8,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "devb": "vite build --mode devb -w"
+    "devtype": "vite tsc"
   },
   "dependencies": {
     "pinia": "^2.0.28",
@@ -36,6 +36,7 @@
     "types": "^0.1.1",
     "unplugin-svg-component": "^0.4.1",
     "vite": "^4.0.0",
+    "vite-plugin-checker": "^0.5.6",
     "vite-plugin-svg-sprite": "^0.3.1"
   }
 }

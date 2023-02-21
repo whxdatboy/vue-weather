@@ -4,6 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
+    "composite": true,
     "types": ["node"],
     "baseUrl": ".",
     "paths": {

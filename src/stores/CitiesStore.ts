@@ -4,14 +4,14 @@ import { apiGeocode } from '@/assets/js/consts'
 import { Coords } from '@/types/consts'
 
 export const useCitiesStore = defineStore('citiesStore', () => {
-  const initCoords: Ref<Coords> = ref(
+  const initCoords = ref<Coords>(
     JSON.parse(localStorage.getItem('coords') || '') || {
       longitude: 0,
       latitude: 0
     }
   )
 
-  const cities: Ref<string[]> = ref(
+  const cities = ref<string[]>(
     JSON.parse(localStorage.getItem('cities') || '') || []
   )
 

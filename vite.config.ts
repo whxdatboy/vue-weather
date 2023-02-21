@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import { appPath } from './config'
 import createSvgSpritePlugin from 'unplugin-svg-component/vite'
+import checker from 'vite-plugin-checker'
 
 // https://vitejs.dev/config/
 
@@ -16,7 +16,6 @@ export default defineConfig({
       types: appPath.types
     }
   },
-  envDir: '/',
   base: './',
   css: {
     devSourcemap: true
@@ -33,7 +32,9 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    vueJsx(),
+    checker({
+      typescript: true
+    }),
     createSvgSpritePlugin({
       iconDir: appPath.icons,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
