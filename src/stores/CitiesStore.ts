@@ -1,21 +1,20 @@
 import { defineStore } from 'pinia'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import { apiGeocode } from '@/assets/js/consts'
 import { Coords } from '@/types/consts'
 
 export const useCitiesStore = defineStore('citiesStore', () => {
-  const initCoords = ref<Coords>(
-    JSON.parse(localStorage.getItem('coords') || '') || {
-      longitude: 0,
-      latitude: 0
-    }
-  )
-
-  const cities = ref<string[]>(
-    JSON.parse(localStorage.getItem('cities') || '') || []
-  )
+  const cities = ref<string[]>([])
+  const initCoords = ref<Coords>({ longitude: 0, latitude: 0 })
+  setCities()
 
   function setStartedCoords() {
+    const initCoordsValue: string | null = localStorage.getItem('coords')
+
+    if (typeof initCoordsValue === 'string') {
+      initCoords.value = JSON.parse(initCoordsValue)
+    }
+
     if (initCoords.value.longitude === 0 && initCoords.value.latitude === 0) {
       window.navigator.geolocation.getCurrentPosition(async pos => {
         initCoords.value.longitude = pos.coords.longitude
@@ -29,6 +28,14 @@ export const useCitiesStore = defineStore('citiesStore', () => {
           .featureMember[0].GeoObject.name
         await addNewCity(cityName)
       })
+    }
+  }
+
+  function setCities() {
+    const citiesLocalStorage = localStorage.getItem('cities')
+
+    if (typeof citiesLocalStorage === 'string') {
+      cities.value = JSON.parse(citiesLocalStorage)
     }
   }
 

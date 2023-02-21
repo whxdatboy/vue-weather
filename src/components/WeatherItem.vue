@@ -88,8 +88,6 @@ const errorResponse = ref<boolean>(false)
 
 try {
   let response = await getWeather(props.city)
-  console.log(response.name)
-  console.log(response.wind.deg)
   if (parseInt(response.cod) === 200) {
     weather.value = {
       city: response.name,
