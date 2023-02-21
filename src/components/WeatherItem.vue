@@ -121,6 +121,8 @@ const deleteCity = (city: string) => {
   cityStore.deleteCityByName(city)
 }
 
-const imageUrl = new URL(`@/assets/images/`, import.meta.url)
-imageUrl.href += `/${weather.value.icon}.svg`
+const imageUrl = new URL(
+  `/src/assets/images/${weather.value.icon}.svg`,
+  import.meta.url
+).href
 </script>

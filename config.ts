@@ -13,7 +13,8 @@ interface appPath {
 export const appPath: appPath = {
   src: fileURLToPath(new URL('./src', import.meta.url)),
   components: fileURLToPath(new URL('./src/components', import.meta.url)),
-  images: fileURLToPath(new URL('./src/images', import.meta.url)),
+  // images: fileURLToPath(new URL('./src/assets/images', import.meta.url)),
+  images: 'src/assets/images',
   assets: fileURLToPath(new URL('./src/assets', import.meta.url)),
   build: 'build',
   icons: `src/icons/`,
